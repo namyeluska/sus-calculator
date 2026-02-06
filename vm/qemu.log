@@ -1,0 +1,4 @@
+[2026-02-06 12:04:56] Launching QEMU: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\calculator_files\qemu-system-x86_64.exe
+[2026-02-06 12:04:56] Disk: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\vm\sus.qcow2
+[2026-02-06 12:04:56] [ERR] C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\calculator_files\qemu-system-x86_64.exe: -boot order=c,d: Expected '=' after parameter 'd'
+[2026-02-06 12:04:56] QEMU exited with code 1.

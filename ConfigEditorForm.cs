@@ -42,6 +42,8 @@ internal sealed class ConfigEditorForm : Form
         BackColor = _background;
         ForeColor = _text;
         Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+        DoubleBuffered = true;
+        Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath) ?? Icon;
 
         var root = new TableLayoutPanel
         {

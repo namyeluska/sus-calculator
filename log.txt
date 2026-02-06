@@ -1,0 +1,14 @@
+[2026-02-06 12:06:34] Launching QEMU: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\calculator_files\qemu-system-x86_64.exe
+[2026-02-06 12:06:34] Disk: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\vm\sus.qcow2
+[2026-02-06 12:06:34] [ERR] C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\calculator_files\qemu-system-x86_64.exe: -boot order=c,d: Expected '=' after parameter 'd'
+[2026-02-06 12:06:34] QEMU exited with code 1.
+[2026-02-06 12:08:42] Launching QEMU: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\calculator_files\qemu-system-x86_64.exe
+[2026-02-06 12:08:42] Disk: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\vm\sus.qcow2
+[2026-02-06 12:08:46] [ERR] (qemu:1836): Gtk-WARNING **: 12:08:46.474: Could not load a pixbuf from icon theme.
+[2026-02-06 12:08:46] [ERR] This may indicate that pixbuf loaders or the mime database could not be found.
+[2026-02-06 12:09:06] QEMU exited with code 0.
+[2026-02-06 12:09:51] Launching QEMU: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\calculator_files\qemu-system-x86_64.exe
+[2026-02-06 12:09:51] Disk: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\vm\sus.qcow2
+[2026-02-06 12:09:52] [ERR] (qemu:6284): Gtk-WARNING **: 12:09:52.799: Could not load a pixbuf from icon theme.
+[2026-02-06 12:09:52] [ERR] This may indicate that pixbuf loaders or the mime database could not be found.
+[2026-02-06 12:09:55] QEMU exited with code 0.

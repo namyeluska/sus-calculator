@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace SusCalculator;
 
@@ -117,10 +118,11 @@ internal sealed class VmLauncher
             startInfo.ArgumentList.Add(isoPath);
         }
 
-        if (!string.IsNullOrWhiteSpace(settings.BootOrder))
+        var bootArg = BuildBootArgument(settings.BootOrder);
+        if (!string.IsNullOrWhiteSpace(bootArg))
         {
             startInfo.ArgumentList.Add("-boot");
-            startInfo.ArgumentList.Add($"order={settings.BootOrder}");
+            startInfo.ArgumentList.Add(bootArg);
         }
 
         if (!string.IsNullOrWhiteSpace(settings.Accelerator))
@@ -322,6 +324,23 @@ internal sealed class VmLauncher
         }
 
         return $"{message} See log: {logPath}";
+    }
+
+    private static string? BuildBootArgument(string? bootOrder)
+    {
+        if (string.IsNullOrWhiteSpace(bootOrder))
+        {
+            return null;
+        }
+
+        var trimmed = bootOrder.Trim();
+        if (trimmed.Contains('='))
+        {
+            return trimmed;
+        }
+
+        var normalized = new string(trimmed.Where(c => !char.IsWhiteSpace(c) && c != ',').ToArray());
+        return normalized.Length == 0 ? null : $"order={normalized}";
     }
 
     private string BuildDebugLogPath(string logPath, string qemuPath)

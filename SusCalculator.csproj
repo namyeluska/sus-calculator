@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnableDefaultItems>false</EnableDefaultItems>
+    <ApplicationIcon>suscalculator.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,5 +19,6 @@
     <Compile Include="ConfigLoader.cs" />
     <Compile Include="VmLauncher.cs" />
     <Compile Include="ConfigEditorForm.cs" />
+    <None Include="suscalculator.ico" />
   </ItemGroup>
 </Project>

@@ -6,11 +6,11 @@
     "configEditorTrigger.expression opens the config editor GUI.",
     "Set qemu.qemuPath to qemu-system-x86_64.exe and qemu.qemuImgPath to qemu-img.exe.",
     "Disk is persistent. Keep isoPath to install the OS; remove it later to boot from disk only.",
-    "bootOrder default is c,d so it tries disk first, then ISO if the disk is empty.",
+    "bootOrder should be like cd or dc (no comma). You can also use full QEMU syntax like order=dc,menu=on.",
     "LogPath captures QEMU stdout/stderr. DebugFlags uses QEMU -d (optional)."
   ],
   "SecretTrigger": {
-    "Expression": "1337\u002B1"
+    "Expression": "69\u002B69"
   },
   "ConfigEditorTrigger": {
     "Expression": "404\u002B404"
@@ -18,14 +18,14 @@
   "Qemu": {
     "QemuPath": "C:\\Users\\sbk.lol\\Documents\\Github\\Projects\\sus-calculator\\calculator_files\\qemu-system-x86_64.exe",
     "QemuImgPath": "C:\\Users\\sbk.lol\\Documents\\Github\\Projects\\sus-calculator\\calculator_files\\qemu-img.exe",
-    "IsoPath": "C:\\Users\\sbk.lol\\Downloads\\Arch Linux.iso",
+    "IsoPath": "C:\\Users\\sbk.lol\\Downloads\\Arch-Linux.iso",
     "DiskPath": "vm\\\\sus.qcow2",
     "DiskSizeGB": 40,
     "MemoryMB": 4096,
     "Cpus": 2,
-    "BootOrder": "c,d",
+    "BootOrder": "cd",
     "Accelerator": "",
-    "LogPath": "vm\\\\qemu.log",
+    "LogPath": "log.txt",
     "DebugFlags": "",
     "ExtraArgs": [
       "-device",

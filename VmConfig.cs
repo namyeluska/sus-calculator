@@ -13,7 +13,8 @@ internal sealed class VmConfig
         "Use '.' as the decimal separator in the expression.",
         "configEditorTrigger.expression opens the config editor GUI.",
         "Set qemu.qemuPath to qemu-system-x86_64.exe.",
-        "Disk is persistent. Keep isoPath if you need to install the OS; remove it later to boot from disk only."
+        "Disk is persistent. Keep isoPath if you need to install the OS; remove it later to boot from disk only.",
+        "bootOrder should be like cd or dc (no comma). You can also use full QEMU syntax like order=dc,menu=on."
     };
 
     public SecretTriggerConfig SecretTrigger { get; set; } = new();
@@ -42,7 +43,7 @@ internal sealed class QemuSettings
     public int Cpus { get; set; } = 2;
     public string BootOrder { get; set; } = "c,d";
     public string Accelerator { get; set; } = string.Empty;
-    public string LogPath { get; set; } = @"vm\qemu.log";
+    public string LogPath { get; set; } = "log.txt";
     public string DebugFlags { get; set; } = string.Empty;
     public string[] ExtraArgs { get; set; } =
     {

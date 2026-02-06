@@ -33,12 +33,17 @@ internal sealed class CalculatorForm : Form
     public CalculatorForm()
     {
         Text = "Sus Calculator";
-        MinimumSize = new Size(320, 480);
+        Size = new Size(360, 560);
+        MinimumSize = Size;
+        MaximumSize = Size;
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        MaximizeBox = false;
         StartPosition = FormStartPosition.CenterScreen;
         Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
         KeyPreview = true;
         BackColor = _backgroundColor;
         DoubleBuffered = true;
+        Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath) ?? Icon;
 
         var layout = BuildLayout();
         Controls.Add(layout);
