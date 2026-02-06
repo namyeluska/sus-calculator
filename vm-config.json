@@ -1,0 +1,30 @@
+{
+  "notes": [
+    "This file configures the hidden VM trigger and QEMU settings.",
+    "secretTrigger.expression format: <number><operator><number> (no spaces). Example: 1337+1",
+    "Use '.' as the decimal separator in the expression.",
+    "Set qemu.qemuPath to qemu-system-x86_64.exe and qemu.qemuImgPath to qemu-img.exe.",
+    "Disk is persistent. Keep isoPath to install the OS; remove it later to boot from disk only.",
+    "bootOrder default is c,d so it tries disk first, then ISO if the disk is empty."
+  ],
+  "secretTrigger": {
+    "expression": "1337+1"
+  },
+  "qemu": {
+    "qemuPath": "C:\\\\Program Files\\\\qemu\\\\qemu-system-x86_64.exe",
+    "qemuImgPath": "C:\\\\Program Files\\\\qemu\\\\qemu-img.exe",
+    "isoPath": "C:\\\\ISO\\\\your-os.iso",
+    "diskPath": "vm\\\\sus.qcow2",
+    "diskSizeGB": 40,
+    "memoryMB": 4096,
+    "cpus": 2,
+    "bootOrder": "c,d",
+    "accelerator": "",
+    "extraArgs": [
+      "-device",
+      "virtio-net-pci,netdev=net0",
+      "-netdev",
+      "user,id=net0"
+    ]
+  }
+}

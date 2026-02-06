@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="ApplicationConfiguration.cs" />
+    <Compile Include="CalculatorEngine.cs" />
+    <Compile Include="CalculatorForm.cs" />
+    <Compile Include="StyledButton.cs" />
+    <Compile Include="VmConfig.cs" />
+    <Compile Include="ConfigLoader.cs" />
+    <Compile Include="VmLauncher.cs" />
+  </ItemGroup>
+</Project>
