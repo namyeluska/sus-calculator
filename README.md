@@ -1,0 +1,2 @@
+# sus-calculator
+Sus Calculator 🤫
