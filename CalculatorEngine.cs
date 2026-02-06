@@ -38,6 +38,7 @@ internal sealed class CalculatorEngine
     private double? _lastOperand;
     private bool _isNewInput = true;
     private bool _hasError;
+    private bool _justEvaluated;
 
     public string Display => _display;
     public bool HasError => _hasError;
@@ -50,6 +51,11 @@ internal sealed class CalculatorEngine
         if (_hasError)
         {
             ClearAll();
+        }
+
+        if (_justEvaluated)
+        {
+            ResetAfterEvaluation();
         }
 
         if (_isNewInput)
@@ -81,6 +87,11 @@ internal sealed class CalculatorEngine
             ClearAll();
         }
 
+        if (_justEvaluated)
+        {
+            ResetAfterEvaluation();
+        }
+
         var separator = DecimalSeparator;
 
         if (_isNewInput)
@@ -101,6 +112,11 @@ internal sealed class CalculatorEngine
         if (_hasError)
         {
             ClearAll();
+        }
+
+        if (_justEvaluated)
+        {
+            ResetAfterEvaluation();
         }
 
         if (_display.StartsWith("-", StringComparison.Ordinal))
@@ -124,6 +140,11 @@ internal sealed class CalculatorEngine
         {
             ClearAll();
             return;
+        }
+
+        if (_justEvaluated)
+        {
+            ResetAfterEvaluation();
         }
 
         if (_isNewInput)
@@ -150,6 +171,7 @@ internal sealed class CalculatorEngine
         _display = "0";
         _isNewInput = true;
         _hasError = false;
+        _justEvaluated = false;
     }
 
     public void ClearAll()
@@ -160,6 +182,7 @@ internal sealed class CalculatorEngine
         _lastOperand = null;
         _isNewInput = true;
         _hasError = false;
+        _justEvaluated = false;
     }
 
     public void ApplyOperator(Operator op)
@@ -232,6 +255,7 @@ internal sealed class CalculatorEngine
         _accumulator = current;
         _display = FormatValue(current);
         _isNewInput = true;
+        _justEvaluated = true;
 
         OperationComputed?.Invoke(this, new OperationComputedEventArgs(left, right, _pendingOperator.Value, current));
     }
@@ -356,5 +380,13 @@ internal sealed class CalculatorEngine
             Operator.Divide => right == 0 ? double.NaN : left / right,
             _ => double.NaN
         };
+    }
+
+    private void ResetAfterEvaluation()
+    {
+        _pendingOperator = null;
+        _lastOperand = null;
+        _accumulator = 0;
+        _justEvaluated = false;
     }
 }

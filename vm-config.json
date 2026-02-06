@@ -1,26 +1,33 @@
 {
-  "notes": [
+  "Notes": [
     "This file configures the hidden VM trigger and QEMU settings.",
-    "secretTrigger.expression format: <number><operator><number> (no spaces). Example: 1337+1",
-    "Use '.' as the decimal separator in the expression.",
+    "secretTrigger.expression format: \u003Cnumber\u003E\u003Coperator\u003E\u003Cnumber\u003E (no spaces). Example: 1337\u002B1",
+    "Use \u0027.\u0027 as the decimal separator in the expression.",
+    "configEditorTrigger.expression opens the config editor GUI.",
     "Set qemu.qemuPath to qemu-system-x86_64.exe and qemu.qemuImgPath to qemu-img.exe.",
     "Disk is persistent. Keep isoPath to install the OS; remove it later to boot from disk only.",
-    "bootOrder default is c,d so it tries disk first, then ISO if the disk is empty."
+    "bootOrder default is c,d so it tries disk first, then ISO if the disk is empty.",
+    "LogPath captures QEMU stdout/stderr. DebugFlags uses QEMU -d (optional)."
   ],
-  "secretTrigger": {
-    "expression": "1337+1"
+  "SecretTrigger": {
+    "Expression": "1337\u002B1"
   },
-  "qemu": {
-    "qemuPath": "C:\\\\Program Files\\\\qemu\\\\qemu-system-x86_64.exe",
-    "qemuImgPath": "C:\\\\Program Files\\\\qemu\\\\qemu-img.exe",
-    "isoPath": "C:\\\\ISO\\\\your-os.iso",
-    "diskPath": "vm\\\\sus.qcow2",
-    "diskSizeGB": 40,
-    "memoryMB": 4096,
-    "cpus": 2,
-    "bootOrder": "c,d",
-    "accelerator": "",
-    "extraArgs": [
+  "ConfigEditorTrigger": {
+    "Expression": "404\u002B404"
+  },
+  "Qemu": {
+    "QemuPath": "C:\\Users\\sbk.lol\\Documents\\Github\\Projects\\sus-calculator\\calculator_files\\qemu-system-x86_64.exe",
+    "QemuImgPath": "C:\\Users\\sbk.lol\\Documents\\Github\\Projects\\sus-calculator\\calculator_files\\qemu-img.exe",
+    "IsoPath": "C:\\Users\\sbk.lol\\Downloads\\Arch Linux.iso",
+    "DiskPath": "vm\\\\sus.qcow2",
+    "DiskSizeGB": 40,
+    "MemoryMB": 4096,
+    "Cpus": 2,
+    "BootOrder": "c,d",
+    "Accelerator": "",
+    "LogPath": "vm\\\\qemu.log",
+    "DebugFlags": "",
+    "ExtraArgs": [
       "-device",
       "virtio-net-pci,netdev=net0",
       "-netdev",

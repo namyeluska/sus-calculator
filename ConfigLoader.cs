@@ -36,6 +36,45 @@ internal static class ConfigLoader
         }
     }
 
+    public static bool TrySaveJson(string json, out string? error)
+    {
+        error = null;
+        try
+        {
+            var config = JsonSerializer.Deserialize<VmConfig>(json, SerializerOptions);
+            if (config == null)
+            {
+                error = "Config JSON is empty or invalid.";
+                return false;
+            }
+
+            return TrySaveConfig(config, out error);
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            return false;
+        }
+    }
+
+    public static bool TrySaveConfig(VmConfig config, out string? error)
+    {
+        error = null;
+        try
+        {
+            Normalize(config);
+            var path = GetConfigPath();
+            var formatted = JsonSerializer.Serialize(config, SerializerOptions);
+            File.WriteAllText(path, formatted);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            return false;
+        }
+    }
+
     public static string GetConfigPath()
     {
         var cwdPath = Path.Combine(Environment.CurrentDirectory, FileName);
@@ -74,6 +113,7 @@ internal static class ConfigLoader
     private static void Normalize(VmConfig config)
     {
         config.SecretTrigger ??= new SecretTriggerConfig();
+        config.ConfigEditorTrigger ??= new ConfigEditorTriggerConfig();
         config.Qemu ??= new QemuSettings();
         if (config.Notes == null || config.Notes.Length == 0)
         {

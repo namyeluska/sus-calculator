@@ -17,5 +17,6 @@
     <Compile Include="VmConfig.cs" />
     <Compile Include="ConfigLoader.cs" />
     <Compile Include="VmLauncher.cs" />
+    <Compile Include="ConfigEditorForm.cs" />
   </ItemGroup>
 </Project>

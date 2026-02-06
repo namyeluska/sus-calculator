@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SusCalculator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a7e69a244e8f9f317a5504eaa08de95aa3a32dc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+984b0ad76aaf69dfbb021ce35fc7b8c2af41510a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SusCalculator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SusCalculator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

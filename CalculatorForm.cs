@@ -13,10 +13,15 @@ internal sealed class CalculatorForm : Form
     private readonly Label _displayLabel = new();
     private readonly Font _displayFont = new("Segoe UI", 32F, FontStyle.Regular, GraphicsUnit.Point);
     private readonly Font _buttonFont = new("Segoe UI Semibold", 14F, FontStyle.Regular, GraphicsUnit.Point);
-    private readonly VmConfig _config;
-    private readonly VmLauncher _vmLauncher;
-    private readonly SecretTriggerSpec? _triggerSpec;
-    private readonly string? _startupError;
+    private readonly string _configPath;
+    private readonly string _configDirectory;
+
+    private VmConfig _config;
+    private VmLauncher _vmLauncher;
+    private SecretTriggerSpec? _triggerSpec;
+    private SecretTriggerSpec? _configEditorSpec;
+    private string? _startupError;
+    private bool _editorOpen;
 
     private readonly Color _backgroundColor = Color.FromArgb(28, 28, 30);
     private readonly Color _displayColor = Color.FromArgb(10, 10, 10);
@@ -38,21 +43,12 @@ internal sealed class CalculatorForm : Form
         var layout = BuildLayout();
         Controls.Add(layout);
 
-        _config = ConfigLoader.Load(out _startupError);
-        var configPath = ConfigLoader.GetConfigPath();
-        var configDirectory = Path.GetDirectoryName(configPath) ?? AppContext.BaseDirectory;
-        if (!SecretTriggerParser.TryParse(_config.SecretTrigger?.Expression, out _triggerSpec, out var triggerError))
-        {
-            _triggerSpec = null;
-            if (!string.IsNullOrWhiteSpace(triggerError))
-            {
-                _startupError = string.IsNullOrWhiteSpace(_startupError)
-                    ? triggerError
-                    : $"{_startupError}{Environment.NewLine}{triggerError}";
-            }
-        }
+        _configPath = ConfigLoader.GetConfigPath();
+        _configDirectory = Path.GetDirectoryName(_configPath) ?? AppContext.BaseDirectory;
 
-        _vmLauncher = new VmLauncher(_config, configDirectory);
+        _config = new VmConfig();
+        _vmLauncher = new VmLauncher(_config, _configDirectory);
+        ReloadConfig(false);
 
         UpdateDisplay();
         KeyDown += OnKeyDown;
@@ -182,12 +178,13 @@ internal sealed class CalculatorForm : Form
 
     private void OnOperationComputed(object? sender, OperationComputedEventArgs e)
     {
-        if (_triggerSpec == null)
+        if (_configEditorSpec != null && _configEditorSpec.Matches(e.Left, e.Right, e.Operator))
         {
+            OpenConfigEditor();
             return;
         }
 
-        if (!_triggerSpec.Matches(e.Left, e.Right, e.Operator))
+        if (_triggerSpec == null || !_triggerSpec.Matches(e.Left, e.Right, e.Operator))
         {
             return;
         }
@@ -207,6 +204,64 @@ internal sealed class CalculatorForm : Form
             BeginInvoke(new Action(() =>
                 MessageBox.Show(this, error, "VM Launch Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)));
         });
+    }
+
+    private void ReloadConfig(bool showWarnings)
+    {
+        _config = ConfigLoader.Load(out _startupError);
+        if (!SecretTriggerParser.TryParse(_config.SecretTrigger?.Expression, out _triggerSpec, out var triggerError))
+        {
+            _triggerSpec = null;
+            AppendStartupError(triggerError);
+        }
+
+        if (!SecretTriggerParser.TryParse(_config.ConfigEditorTrigger?.Expression, out _configEditorSpec, out var editorError))
+        {
+            _configEditorSpec = null;
+            AppendStartupError(editorError);
+        }
+
+        _vmLauncher = new VmLauncher(_config, _configDirectory);
+
+        if (showWarnings && !string.IsNullOrWhiteSpace(_startupError))
+        {
+            MessageBox.Show(this, _startupError, "Config Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+    }
+
+    private void AppendStartupError(string? error)
+    {
+        if (string.IsNullOrWhiteSpace(error))
+        {
+            return;
+        }
+
+        _startupError = string.IsNullOrWhiteSpace(_startupError)
+            ? error
+            : $"{_startupError}{Environment.NewLine}{error}";
+    }
+
+    private void OpenConfigEditor()
+    {
+        if (_editorOpen)
+        {
+            return;
+        }
+
+        _editorOpen = true;
+        try
+        {
+            using var editor = new ConfigEditorForm(_configPath);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                ReloadConfig(true);
+            }
+        }
+        finally
+        {
+            _editorOpen = false;
+        }
     }
 
     private void OnKeyPress(object? sender, KeyPressEventArgs e)

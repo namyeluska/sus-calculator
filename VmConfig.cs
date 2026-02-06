@@ -11,17 +11,24 @@ internal sealed class VmConfig
         "This file configures the hidden VM trigger and QEMU settings.",
         "secretTrigger.expression format: <number><operator><number> (no spaces). Example: 1337+1",
         "Use '.' as the decimal separator in the expression.",
+        "configEditorTrigger.expression opens the config editor GUI.",
         "Set qemu.qemuPath to qemu-system-x86_64.exe.",
         "Disk is persistent. Keep isoPath if you need to install the OS; remove it later to boot from disk only."
     };
 
     public SecretTriggerConfig SecretTrigger { get; set; } = new();
+    public ConfigEditorTriggerConfig ConfigEditorTrigger { get; set; } = new();
     public QemuSettings Qemu { get; set; } = new();
 }
 
 internal sealed class SecretTriggerConfig
 {
     public string Expression { get; set; } = "1337+1";
+}
+
+internal sealed class ConfigEditorTriggerConfig
+{
+    public string Expression { get; set; } = "404+404";
 }
 
 internal sealed class QemuSettings
@@ -35,6 +42,8 @@ internal sealed class QemuSettings
     public int Cpus { get; set; } = 2;
     public string BootOrder { get; set; } = "c,d";
     public string Accelerator { get; set; } = string.Empty;
+    public string LogPath { get; set; } = @"vm\qemu.log";
+    public string DebugFlags { get; set; } = string.Empty;
     public string[] ExtraArgs { get; set; } =
     {
         "-device", "virtio-net-pci,netdev=net0",
