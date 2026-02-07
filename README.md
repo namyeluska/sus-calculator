@@ -103,3 +103,6 @@ The published output will include:
 - This is a Windows-only application because it uses WinForms.
 - The VM disk is persistent; remove the ISO after OS installation to boot from disk.
 - For best performance on Windows, enable Hyper-V and set `Accelerator` to `whpx` in the config.
+
+**Donate By Ko-Fi**
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M41TRW1T)
