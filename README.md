@@ -53,7 +53,7 @@ Sus Calculator is a Windows desktop calculator with a hidden VM trigger. It beha
 
 **Default Hidden Triggers**
 - `404 + 404 =` opens the configuration GUI.
-- `1337 + 1 =` launches the VM.
+- `69 + 69 =` launches the VM.
 
 **Configuration Example**
 ```json
