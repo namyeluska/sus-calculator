@@ -20,5 +20,13 @@
     <Compile Include="VmLauncher.cs" />
     <Compile Include="ConfigEditorForm.cs" />
     <None Include="suscalculator.ico" />
+    <Content Include="vm-config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="calculator_files\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 </Project>

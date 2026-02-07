@@ -12,3 +12,8 @@
 [2026-02-06 12:09:52] [ERR] (qemu:6284): Gtk-WARNING **: 12:09:52.799: Could not load a pixbuf from icon theme.
 [2026-02-06 12:09:52] [ERR] This may indicate that pixbuf loaders or the mime database could not be found.
 [2026-02-06 12:09:55] QEMU exited with code 0.
+[2026-02-07 12:17:05] Launching QEMU: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\calculator_files\qemu-system-x86_64.exe
+[2026-02-07 12:17:05] Disk: C:\Users\sbk.lol\Documents\Github\Projects\sus-calculator\vm\sus.qcow2
+[2026-02-07 12:17:12] [ERR] (qemu:4596): Gtk-WARNING **: 12:17:12.625: Could not load a pixbuf from icon theme.
+[2026-02-07 12:17:12] [ERR] This may indicate that pixbuf loaders or the mime database could not be found.
+[2026-02-07 12:17:18] QEMU exited with code 0.

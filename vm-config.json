@@ -16,10 +16,10 @@
     "Expression": "404\u002B404"
   },
   "Qemu": {
-    "QemuPath": "C:\\Users\\sbk.lol\\Documents\\Github\\Projects\\sus-calculator\\calculator_files\\qemu-system-x86_64.exe",
-    "QemuImgPath": "C:\\Users\\sbk.lol\\Documents\\Github\\Projects\\sus-calculator\\calculator_files\\qemu-img.exe",
-    "IsoPath": "C:\\Users\\sbk.lol\\Downloads\\Arch-Linux.iso",
-    "DiskPath": "vm\\\\sus.qcow2",
+    "QemuPath": "calculator_files\\qemu-system-x86_64.exe",
+    "QemuImgPath": "calculator_files\\qemu-img.exe",
+    "IsoPath": "calculator_files\\your-os.iso",
+    "DiskPath": "vm\\sus.qcow2",
     "DiskSizeGB": 40,
     "MemoryMB": 4096,
     "Cpus": 2,
