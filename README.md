@@ -2,6 +2,8 @@
 
 ![Sus Calculator Logo](github_assets/logo.png)
 
+**Run As Administrator If You Get Errors**
+
 Sus Calculator is a Windows desktop calculator with a hidden VM trigger. It behaves like a standard calculator, but when a secret expression is entered, it launches a QEMU virtual machine using settings from a JSON config file. A second secret expression opens a modern configuration GUI.
 
 **What Is This Program?**
